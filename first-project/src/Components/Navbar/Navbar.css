@@ -1,0 +1,10 @@
+.nav-pills .nav-link {
+  --bs-nav-pills-link-active-color: #111;
+  --bs-nav-pills-link-active-bg: #f1f1f1;
+}
+
+.logo-img{
+    height: 65px !important;
+    width: 100% !important;
+    border-radius: 20px
+}
