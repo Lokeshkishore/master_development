@@ -48,13 +48,6 @@ const AddProductForm = () => {
     data.append('quantity', formData.quantity);
     data.append('image', formData.image);
 
-    // axios({ method: 'post', url: 'http://127.0.0.1:8000/crackers/addProduct',data: formData})
-    // .then(function (response) {
-    //    setProductlist(response.data);
-    // })
-    // .catch(function (error) {
-    //     console.log(error);
-    // });
      const res = axios.post('http://127.0.0.1:8000/crackers/addProduct', data, {
         headers: {
           'Content-Type': 'multipart/form-data',

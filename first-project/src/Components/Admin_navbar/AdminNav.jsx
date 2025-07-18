@@ -12,7 +12,6 @@ const AdminNav = () => {
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <Link  class="nav-link active" to="/admin/home">Home</Link >
                     <Link  class="nav-link" to="/admin/orders">Orders</Link >
                 </div>
                 </div>

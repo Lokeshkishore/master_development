@@ -1,10 +1,44 @@
 import React from 'react'
 import './Order.css'
+import {useState,useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
+import axios from 'axios'
 const Order = () => {
   const location = useLocation();
   const cartList = location.state?.items || [];
   const totalPrice = cartList.reduce((sum, item) => sum + Number(item.display_price), 0);
+
+  const [orderForm,setOrderForm] = useState({
+    name:'',
+    email:'',
+    phone:'',
+    address:'',
+  });
+ const handleChange = (e) => {
+     const { name,value} = e.target;
+      setOrderForm((prev) => ({
+        ...prev,
+        [name]: value,
+      }));  
+};
+const orderSubmit=()=>{
+    event.preventDefault();
+      orderForm['cartlist'] = JSON.stringify(cartList);
+      orderForm['total_price'] = totalPrice;
+      var data={
+        data:orderForm
+      }
+      const res = axios.post('http://127.0.0.1:8000/crackers/addOrder', data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+      .then(function (response) {
+        
+    });
+
+}
+
   return (
     <>
     <div className='orderPage'>
@@ -57,33 +91,33 @@ const Order = () => {
                 </table>
             </div>
             <div className="w-50 order-form">
-                <form action="">
+                <form action="" onSubmit={orderSubmit}>
                   <div className='d-block'>
                     <label className='mb-1'>Name</label>
                       <div className="">
-                      <input type="text" className="order-input" name="name" placeholder="Enter your name"  value=""/>
+                      <input type="text" className="order-input" name="name" placeholder="Enter your name" onChange={handleChange}  value={orderForm.name}/>
                       </div>
                   </div>
                   <div className='d-block'>
                     <label className='mb-1'>Email</label>
                       <div className="">
-                      <input type="email" className="order-input" name="email" placeholder="Enter your email"  value=""/>
+                      <input type="email" className="order-input" name="email" placeholder="Enter your email"  onChange={handleChange}  value={orderForm.email}/>
                       </div>
                   </div>
                   <div className='d-block'>
                     <label className='mb-1'>Phone</label>
                       <div className="">
-                      <input type="text" className="order-input" name="phone" placeholder="Enter your mobile number"  value=""/>
+                      <input type="text" className="order-input" name="phone" placeholder="Enter your mobile number"  onChange={handleChange}  value={orderForm.phone}/>
                       </div>
                   </div>
                    <div className='d-block'>
                     <label className='mb-1'>Address</label>
                       <div className="">
-                     <textarea class="form-control" placeholder="Enter your address" id="floatingTextarea"></textarea>
+                     <textarea class="form-control" name='address' onChange={handleChange}  value={orderForm.address} placeholder="Enter your address" id="floatingTextarea"></textarea>
                       </div>
                   </div>
                   <div>
-                     <button type="button" class="w-100 btn btn-warning">Place order</button>
+                     <button type="submit" class="w-100 btn btn-warning">Place order</button>
                   </div>
                 </form>
             </div>
