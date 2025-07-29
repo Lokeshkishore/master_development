@@ -120,3 +120,17 @@
   color: #222;
   padding: 0;
 }
+.removeCartBtn{
+    color: red;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 0px 5px;
+    text-decoration: none;
+}
+.addCartBtn{
+    color: green;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 0px 5px;
+    text-decoration: none;
+}

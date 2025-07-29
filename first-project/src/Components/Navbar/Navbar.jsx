@@ -80,14 +80,14 @@ const Navbar = ({ cartList }) => {
           
           <div className="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
             <div className="search-bar row bg-light p-2 my-2 rounded-4">
-              <div className="col-md-4 d-none d-md-block">
+              {/* <div className="col-md-4 d-none d-md-block">
                 <select className="form-select border-0 bg-transparent">
                   <option>All Categories</option>
                   <option>Groceries</option>
                   <option>Drinks</option>
                   <option>Chocolates</option>
                 </select>
-              </div>
+              </div> */}
               <div className="col-11 col-md-7">
                 <form id="search-form" className="text-center" action="index.html" method="post">
                   <input type="text" className="form-control border-0 bg-transparent" placeholder="Search for more than 20,000 products" />
@@ -138,7 +138,7 @@ const Navbar = ({ cartList }) => {
 
         </div>
       </div>
-      <div className="container-fluid">
+      {/* <div className="container-fluid">
         <div className="row py-3">
           <div className="d-flex  justify-content-center justify-content-sm-between align-items-center">
             <nav className="main-menu d-flex navbar navbar-expand-lg">
@@ -210,7 +210,7 @@ const Navbar = ({ cartList }) => {
             </nav>  
           </div>
         </div>
-      </div>
+      </div> */}
     </header>
     </div>
   )

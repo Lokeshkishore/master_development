@@ -3,9 +3,12 @@ import './Order.css'
 import {useState,useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios'
+import orderConfirm from '../../assets/order_confirmed.jpg'
 const Order = () => {
   const location = useLocation();
-  const cartList = location.state?.items || [];
+  const initialCart = location.state?.items || [];
+  const [cartList, setCartList] = useState([]);
+  const [orderPlaced, setOrderPlaced] = useState(false);
   const totalPrice = cartList.reduce((sum, item) => sum + Number(item.display_price), 0);
 
   const [orderForm,setOrderForm] = useState({
@@ -21,6 +24,25 @@ const Order = () => {
         [name]: value,
       }));  
 };
+  useEffect(() => {
+    setCartList(initialCart);
+  }, [initialCart]);
+
+  const changeQuantity=(product,id,type)=>{
+    if(type=='plus'){
+        document.getElementById(id).value = Number(document.getElementById(id).value) +1;
+    }
+    else if(type=='minus'){
+        document.getElementById(id).value = Number(document.getElementById(id).value) - 1;
+    }
+    var priceTag = Number(document.getElementById(id).value) * Number(product.price);
+    
+    setCartList(prevItems =>
+      prevItems.map(item =>
+        item.id === product.id ? { ...item, display_price: priceTag,buying_quantity:Number(document.getElementById(id).value)} : item
+      )
+    );
+  }
 const orderSubmit=()=>{
     event.preventDefault();
       orderForm['cartlist'] = JSON.stringify(cartList);
@@ -34,8 +56,10 @@ const orderSubmit=()=>{
         },
       })
       .then(function (response) {
-        
-    });
+          if(response.data=='True'){
+             setOrderPlaced(true);
+          }
+       });
 
 }
 
@@ -91,35 +115,42 @@ const orderSubmit=()=>{
                 </table>
             </div>
             <div className="w-50 order-form">
-                <form action="" onSubmit={orderSubmit}>
-                  <div className='d-block'>
-                    <label className='mb-1'>Name</label>
-                      <div className="">
-                      <input type="text" className="order-input" name="name" placeholder="Enter your name" onChange={handleChange}  value={orderForm.name}/>
-                      </div>
-                  </div>
-                  <div className='d-block'>
-                    <label className='mb-1'>Email</label>
-                      <div className="">
-                      <input type="email" className="order-input" name="email" placeholder="Enter your email"  onChange={handleChange}  value={orderForm.email}/>
-                      </div>
-                  </div>
-                  <div className='d-block'>
-                    <label className='mb-1'>Phone</label>
-                      <div className="">
-                      <input type="text" className="order-input" name="phone" placeholder="Enter your mobile number"  onChange={handleChange}  value={orderForm.phone}/>
-                      </div>
-                  </div>
-                   <div className='d-block'>
-                    <label className='mb-1'>Address</label>
-                      <div className="">
-                     <textarea class="form-control" name='address' onChange={handleChange}  value={orderForm.address} placeholder="Enter your address" id="floatingTextarea"></textarea>
-                      </div>
-                  </div>
-                  <div>
-                     <button type="submit" class="w-100 btn btn-warning">Place order</button>
-                  </div>
-                </form>
+                {!orderPlaced&&(
+                  <form action="" onSubmit={orderSubmit}>
+                    <div className='d-block'>
+                      <label className='mb-1 label'>Name</label>
+                        <div className="">
+                        <input type="text" className="form-input" name="name" placeholder="Enter your name" onChange={handleChange}  value={orderForm.name}/>
+                        </div>
+                    </div>
+                    <div className='d-block'>
+                      <label className='mb-1 label'>Email</label>
+                        <div className="">
+                        <input type="email" className="form-input" name="email" placeholder="Enter your email"  onChange={handleChange}  value={orderForm.email}/>
+                        </div>
+                    </div>
+                    <div className='d-block'>
+                      <label className='mb-1 label'>Phone</label>
+                        <div className="">
+                        <input type="text" className="form-input" name="phone" placeholder="Enter your mobile number"  onChange={handleChange}  value={orderForm.phone}/>
+                        </div>
+                    </div>
+                    <div className='d-block'>
+                      <label className='mb-1 label'>Address</label>
+                        <div className="">
+                      <textarea className="form-input" name='address' onChange={handleChange}  value={orderForm.address} placeholder="Enter your address" id="floatingTextarea"></textarea>
+                        </div>
+                    </div>
+                    <div>
+                      <button type="submit" class="w-100 btn btn-warning">Place order</button>
+                    </div>
+                  </form>
+                )
+                }
+                {orderPlaced&&(
+                  <img src={orderConfirm} className="img-fluid"/>
+                )
+                }
             </div>
         </div>
        

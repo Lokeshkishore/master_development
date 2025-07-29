@@ -33,9 +33,10 @@ class OrderListView(APIView):
         serializer = orderSerializer(data=request.data['data'])
         if serializer.is_valid():
             serializer.save()  # saves to DB
-            orders = orderList.objects.all()
-            serializer = orderSerializer(orders, many=True)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            # orders = orderList.objects.all()
+            # serializer = orderSerializer(orders, many=True)
+            success='True'
+            return Response(success,status=status.HTTP_201_CREATED)
         return Response( status=status.HTTP_400_BAD_REQUEST)    
        
 

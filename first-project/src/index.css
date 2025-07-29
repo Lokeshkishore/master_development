@@ -170,3 +170,13 @@ h1,h2,h3,h4,h5,h6 {
 .dropdown-menu {
   --bs-dropdown-link-active-bg: var(--bs-primary);
 }
+.label{
+   color: black;
+    font-weight: 700;
+}
+.form-input{
+    width: 100%;
+    border: 1px solid #d85618;
+    border-radius: 5px;
+    padding: 2px 15px;
+}

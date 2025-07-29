@@ -14,6 +14,7 @@ const Trending = ({ cartList, setcartList }) => {
           response.data.forEach((item)=>{
               item.display_price = item.price;
               item.buying_quantity = 1;
+              item.addCart = true;
           });
          setProductlist(response.data);
       }
@@ -34,8 +35,12 @@ const Trending = ({ cartList, setcartList }) => {
       )
     );
   }
-  const addToCart = (item) => {
-    setcartList([...cartList, item]);
+  const addToCart = (ele) => {
+    const updatedItems = productlist.map(item =>
+      item.id === ele.id ? { ...item, addCart: false } : item
+    );
+    setProductlist(updatedItems);
+    setcartList([...cartList, ele]);
   }
   return (
     <div>
@@ -48,13 +53,13 @@ const Trending = ({ cartList, setcartList }) => {
             <div className="bootstrap-tabs product-tabs">
               <div className="tabs-header d-flex justify-content-between border-bottom my-5">
                 <h3>Trending Products</h3>
-                <nav>
+                {/* <nav>
                   <div className="nav nav-tabs" id="nav-tab" role="tablist">
                     <a href="#" className="nav-link text-uppercase fs-6 active" id="nav-all-tab" data-bs-toggle="tab" data-bs-target="#nav-all">All</a>
                     <a href="#" className="nav-link text-uppercase fs-6" id="nav-fruits-tab" data-bs-toggle="tab" data-bs-target="#nav-fruits">Fruits & Veges</a>
                     <a href="#" className="nav-link text-uppercase fs-6" id="nav-juices-tab" data-bs-toggle="tab" data-bs-target="#nav-juices">Juices</a>
                   </div>
-                </nav>
+                </nav> */}
               </div>
               <div className="tab-content" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
@@ -87,7 +92,12 @@ const Trending = ({ cartList, setcartList }) => {
                                   </button>
                               </span>
                           </div>
-                          <a  onClick={() => addToCart(product)} >Add to Cart <iconify-icon icon="uil:shopping-cart"/></a>
+                            {product.addCart && (
+                              <a  onClick={() => addToCart(product)} className='addCartBtn'>Add to Cart <iconify-icon icon="uil:shopping-cart"/></a>
+                            )}
+                            {!product.addCart && (
+                              <a  onClick={() => addToCart(product)} className='removeCartBtn'>Remove Cart <iconify-icon icon="uil:shopping-cart"/></a>
+                            )}
                         </div>
                       </div>
                     </div>
