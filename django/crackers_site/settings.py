@@ -135,9 +135,9 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:8000", 
+    "https://master-development.vercel.app", 
     "http://localhost:8000",
     "http://localhost:5173",
-    "https://master-development-ptey7he8r-lokeshkishores-projects.vercel.app/"
+    "https://master-development.vercel.app"
 ]
 CORS_ALLOW_ALL_ORIGINS=True

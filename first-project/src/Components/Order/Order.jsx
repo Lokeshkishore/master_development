@@ -50,7 +50,7 @@ const orderSubmit=()=>{
       var data={
         data:orderForm
       }
-      const res = axios.post('http://127.0.0.1:8000/crackers/addOrder', data, {
+      const res = axios.post('https://master-development.vercel.app/crackers/addOrder', data, {
         headers: {
           'Content-Type': 'application/json',
         },
