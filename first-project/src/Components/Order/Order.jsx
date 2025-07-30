@@ -4,12 +4,14 @@ import {useState,useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 import axios from 'axios'
 import orderConfirm from '../../assets/order_confirmed.jpg'
+import.meta.env
 const Order = () => {
   const location = useLocation();
   const initialCart = location.state?.items || [];
   const [cartList, setCartList] = useState([]);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const totalPrice = cartList.reduce((sum, item) => sum + Number(item.display_price), 0);
+  const DOMAIN_URL = import.meta.env.VITE__DOMAIN_URL;
 
   const [orderForm,setOrderForm] = useState({
     name:'',
@@ -50,7 +52,7 @@ const orderSubmit=()=>{
       var data={
         data:orderForm
       }
-      const res = axios.post('https://master-development.vercel.app/crackers/addOrder', data, {
+      const res = axios.post(`${DOMAIN_URL}/crackers/addOrder`, data, {
         headers: {
           'Content-Type': 'application/json',
         },

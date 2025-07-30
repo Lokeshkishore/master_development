@@ -12,7 +12,7 @@ const AddProductForm = () => {
   });
   const [productlist, setProductlist] = useState([]);
   useEffect(() => {
-    axios.get("https://master-development.vercel.app/crackers/home").then((response) => {
+    axios.get("https://kishorecrackers.vercel.app/").then((response) => {
       if(response){
          setProductlist(response.data);
       }
@@ -48,7 +48,7 @@ const AddProductForm = () => {
     data.append('quantity', formData.quantity);
     data.append('image', formData.image);
 
-     const res = axios.post('https://master-development.vercel.app/crackers/addProduct', data, {
+     const res = axios.post(`${DOMAIN_URL}/crackers/addProduct`, data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/media': 'http://localhost:8000',
+      '/media': `${VITE__API_URL}`,
     },
   },
 })

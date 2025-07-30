@@ -4,12 +4,14 @@ import likeSvg from '../../assets/heart-svgrepo-com.svg'
 import plusSvg from '../../assets/plus.svg'
 import {useState,useEffect} from 'react';
 import axios from 'axios'
+import.meta.env
 
 const Trending = ({ cartList, setcartList }) => {
   const [productlist, setProductlist] = useState([]);
- 
+  const DOMAIN_URL = import.meta.env.VITE__DOMAIN_URL;
+
   useEffect(() => {
-    axios.get("https://master-development.vercel.app/crackers/home").then((response) => {
+    axios.get(`${DOMAIN_URL}/crackers/home`).then((response) => {
       if(response){
           response.data.forEach((item)=>{
               item.display_price = item.price;

@@ -6,7 +6,7 @@ const AdminOrders = () => {
   const [cartList,setCartList]= useState([]);
   const [selectedOrder,setSelectedOrder] = useState({});
   useEffect(()=>{
-    axios.get("https://master-development.vercel.app/crackers/admin-orders").then((response) => {
+    axios.get(`${DOMAIN_URL}/crackers/admin-orders`).then((response) => {
         if(response){
             setOrdersList(response.data);
         }
