@@ -8,10 +8,10 @@ import.meta.env
 
 const Trending = ({ cartList, setcartList }) => {
   const [productlist, setProductlist] = useState([]);
-  const DOMAIN_URL = import.meta.env.VITE_DOMAIN_URL;
+  const API_URL = import.meta.env.VITE_API_URL;
 
   useEffect(() => {
-    axios.get(`${DOMAIN_URL}/crackers/home`).then((response) => {
+    axios.get(`${API_URL}/crackers/home`).then((response) => {
       if(response){
           response.data.forEach((item)=>{
               item.display_price = item.price;
