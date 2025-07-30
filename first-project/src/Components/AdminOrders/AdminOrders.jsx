@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import './AdminOrders.css'
+import.meta.env
 const AdminOrders = () => {
   const [odersList,setOrdersList]= useState([]);
   const [cartList,setCartList]= useState([]);
   const [selectedOrder,setSelectedOrder] = useState({});
+
+  const DOMAIN_URL = import.meta.env.VITE_DOMAIN_URL;
   useEffect(()=>{
     axios.get(`${DOMAIN_URL}/crackers/admin-orders`).then((response) => {
         if(response){

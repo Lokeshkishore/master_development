@@ -3,6 +3,7 @@ import './AddProductForm.css';
 import {useState,useEffect} from 'react';
 import axios from 'axios'
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import.meta.env
 const AddProductForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,8 +12,9 @@ const AddProductForm = () => {
     image: null,
   });
   const [productlist, setProductlist] = useState([]);
+  const DOMAIN_URL = import.meta.env.VITE_DOMAIN_URL;
   useEffect(() => {
-    axios.get("https://kishorecrackers.vercel.app/").then((response) => {
+    axios.get(`${DOMAIN_URL}/crackers/home`).then((response) => {
       if(response){
          setProductlist(response.data);
       }

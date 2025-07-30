@@ -1,7 +1,7 @@
 import React from 'react'
 import './Navbar.css'
 import logo from '../../assets/logo.jpg'
-import logo1 from '../../assets/logo1.jpg'
+import logo1 from '../../assets/logo1.jpeg'
 import likeSvg from '../../assets/heart-svgrepo-com.svg'
 import {useState,useEffect} from 'react';
 import Trending from '../Trending/Trending'
