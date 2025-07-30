@@ -8,7 +8,7 @@ import.meta.env
 
 const Trending = ({ cartList, setcartList }) => {
   const [productlist, setProductlist] = useState([]);
-  const DOMAIN_URL = import.meta.env.VITE__DOMAIN_URL;
+  const DOMAIN_URL = import.meta.env.VITE_DOMAIN_URL;
 
   useEffect(() => {
     axios.get(`${DOMAIN_URL}/crackers/home`).then((response) => {
